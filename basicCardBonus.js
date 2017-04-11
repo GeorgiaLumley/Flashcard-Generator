@@ -6,7 +6,6 @@ var cardCount;
 var cardsArr = [];
 var quizIndex = 0;
 var correctCount = 0;
-var initPass = false;
 
 var init = function() {
 	inquirer.prompt([

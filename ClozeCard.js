@@ -1,10 +1,12 @@
 var ClozeCard = function(text, cloze) {
 	if(text.search(cloze) === -1) {
-		console.log("The cloze deletion does not appear in the full text");
+		console.log("");
+		console.log("    The cloze deletion does not appear in the full text. Please try again.");
+		console.log("");
 	} else {
 		this.text = text;
 		this.cloze = cloze;
-		
+
 		this.getFullText = function() {
 			return this.text;
 		};
@@ -12,7 +14,7 @@ var ClozeCard = function(text, cloze) {
 			return this.cloze;
 		};
 		this.getPartial = function() {
-			return this.text.replace(cloze, "...");
+			return text.replace(cloze, "...");
 		};
 	}
 };
