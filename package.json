@@ -1,0 +1,22 @@
+{
+  "name": "flashcard-generator",
+  "version": "1.0.0",
+  "description": "Homework #11",
+  "main": "basicCardBonus.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoonslee/Flashcard-Generator.git"
+  },
+  "author": "Yoon Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoonslee/Flashcard-Generator/issues"
+  },
+  "homepage": "https://github.com/yoonslee/Flashcard-Generator#readme",
+  "dependencies": {
+    "inquirer": "^3.0.6"
+  }
+}
