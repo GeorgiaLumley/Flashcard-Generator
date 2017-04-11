@@ -6,6 +6,28 @@ var cardCount;
 var cardsArr = [];
 var quizIndex = 0;
 var correctCount = 0;
+var initPass = false;
+
+var init = function() {
+	inquirer.prompt([
+		{
+			type: "input",
+			message: "How many Basic Flashcards would you like to make today?",
+			name: "quantity"
+		}
+	]).then(function(answers) {
+		if(isNaN(answers.quantity) === false) {
+			cardCount = answers.quantity;
+			console.log("");
+			console.log(" --- ===  CREATE CARDS  === ---");
+			createBasicCard();
+		} else {
+			console.log("Sorry, you must enter a number.");
+			console.log("");
+			init();
+		}
+	});
+};
 
 var createBasicCard = function() {
 	if(cardsArr.length < cardCount) {
@@ -71,15 +93,4 @@ var quiz = function() {
 console.log("");
 console.log(" --- ===  WELCOME  === ---");
 
-inquirer.prompt([
-	{
-		type: "input",
-		message: "How many Basic Flashcards would you like to make today?",
-		name: "quantity"
-	}
-]).then(function(answers) {
-	cardCount = answers.quantity;
-	console.log("");
-	console.log(" --- ===  CREATE CARDS  === ---");
-	createBasicCard();
-});
+init();
