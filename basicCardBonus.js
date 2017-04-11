@@ -41,11 +41,12 @@ var quiz = function() {
 		inquirer.prompt([
 			{
 				type: "input",
-				message: cardsArr[quizIndex].front,
+				message: cardsArr[quizIndex].getFront(),
 				name: "back"
 			}
 		]).then(function(answers) {
-			if(answers.back.toUpperCase() === cardsArr[quizIndex].back.toUpperCase()) {
+
+			if(answers.back.toUpperCase() === cardsArr[quizIndex].getBack().toUpperCase()) {
 				correctCount++;
 				console.log("");
 				console.log("    Correct!");
@@ -66,6 +67,9 @@ var quiz = function() {
 		console.log("");
 	}
 };
+
+console.log("");
+console.log(" --- ===  WELCOME  === ---");
 
 inquirer.prompt([
 	{
