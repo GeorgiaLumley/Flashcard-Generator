@@ -4,6 +4,8 @@ var inquirer = require("inquirer");
 var cardIndex = 1;
 var cardCount;
 var cardsArr = [];
+var quizIndex = 0;
+var correctCount = 0;
 
 var createBasicCard = function() {
 	if(cardsArr.length < cardCount) {
@@ -28,6 +30,40 @@ var createBasicCard = function() {
 
 			createBasicCard();
 		});
+	} else {
+		console.log(" --- === QUIZ TIME === ---");
+		quiz();
+	}
+};
+
+var quiz = function() {
+	if(quizIndex < cardCount) {
+		inquirer.prompt([
+			{
+				type: "input",
+				message: cardsArr[quizIndex].front,
+				name: "back"
+			}
+		]).then(function(answers) {
+			if(answers.back.toUpperCase() === cardsArr[quizIndex].back.toUpperCase()) {
+				correctCount++;
+				console.log("");
+				console.log("    Correct!");
+				console.log("");
+			} else {
+				console.log("");
+				console.log("    Incorrect!");
+				console.log("");
+			}
+
+			quizIndex++;
+
+			quiz();
+		});
+	} else {
+		console.log(" --- ===  RESULTS  === ---");
+		console.log("Correct: " + correctCount + "  |  " + "Incorrect: " + (cardCount - correctCount));
+		console.log("");
 	}
 };
 
@@ -39,5 +75,7 @@ inquirer.prompt([
 	}
 ]).then(function(answers) {
 	cardCount = answers.quantity;
+	console.log("");
+	console.log(" --- ===  CREATE CARDS  === ---");
 	createBasicCard();
 });
