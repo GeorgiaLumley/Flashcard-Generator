@@ -1,17 +1,47 @@
-# Flashcard-Generator
-Homework #11
+# ![pageres](media/logo.png)
+
+Use the command line to create flashcards. You can either create basic flashcards with a simple front and back, or you can opt for cloze-deleted flashcards. After creating your flashcards, the program will then quiz you. Perfect for studying!
+
+
+## Usage
+
+If you want to create basic flashcards (front and back), then simply run basicCardBonus.js by typing into the command line,
+
+```
+$ node basicCardBonus.js
+```
+
+For cloze-deleted flashcards,
+
+```
+$ node clozeCardBonus.js
+```
+
+Also, make sure to install `inquirer` before executing. You can do this by typing this into the command line before execution;
+
+```
+$ npm install
+```
+
+After execution, you will guided by the command line to begin creating your flashcards. Enjoy!
 
 ## Requirements
-- Add bullets
-- Like this
+
+- Constructors for `BasicCard` (basic flashcards) and `ClozeCard` (cloze-deleted flashcards) with appropriate properties and methods
+- `BasicCard` has `front` and `back` properties and appropriate methods
+- `ClozeCard` has `text` and `cloze` properties, built-in validation for when the cloze-deletion is not found in the full text, and appropriate methods
+- Executables for `BasicCard` (basic flashcards) and `ClozeCard` (cloze-deleted flashcards)
+- Upon execution, get user input via the `inquirer` npm package for number of cards to be created, and then recursively prompt user for flashcard values
+- After creation of cards is complete, quiz the user, e.g., show `front` value and the user has to type in `back` value
 
 ## Technologies Used
-- Jquery for Dom Manipulation
-- AJAX for API GET requests
+
+- JavaScript
+- node.js
+- `inquirer` npm package
 
 ## Code Explanation
-- Here, you can either provide a brief summary about your code and perhaps what you learned or you can go into specif detail about how you tackled certain tasks.
-- Use code snippets for placing example code and then describing it
-- Use subheaders to organize your thoughts
-- This is the most important part as it will show other what your code does with out having to download the code. 
-- In essense, this will also be a form of notes that you may later reference weeks later
+- `BasicCard` and `ClozeCard` constructors are similar in that they have 2 main properties each; however, the `ClozeCard` constructor is more complex in that `cloze` property must be found in the full text (`text` property)
+- We are modularizing our command-line app by separating the files: the logic is that each constructor is contained in its own JavaScript file, and so is each executable
+- By exporting (using `module.exports`), we can link separate files
+- Recursion and promises were essential to this program as it required the calling of functions but only after the user had completed certain steps, e.g. wait for user to finish input of flashcard contents
