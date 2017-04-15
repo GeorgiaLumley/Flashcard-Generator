@@ -50,10 +50,11 @@ Big a-ha moment was using catching the unhandled promise rejections when the `Cl
 
 ```js
 	// catches error thrown if promise is unhandled
-	}).catch(function(err) {
+	then({ promise }).catch(function(err) {
 		console.log("");
 		console.log("     " + err);
 		console.log("");
 
 		createClozeCard();
+	});
 ```
