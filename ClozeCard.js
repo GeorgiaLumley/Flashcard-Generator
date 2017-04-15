@@ -1,8 +1,18 @@
 var ClozeCard = function(text, cloze) {
-	if(text.search(cloze) === -1) {
-		console.log("");
-		console.log("    The cloze deletion does not appear in the full text. Please try again.");
-		console.log("");
+	var textWordsArr = text.split(" ");
+
+	var clozeFound = false;
+
+	for(var i = 0; i < textWordsArr.length; i++) {
+		if(textWordsArr[i].toUpperCase() === cloze.toUpperCase()) {
+			clozeFound = true;
+		} else if(textWordsArr[i].toUpperCase() === (cloze.toUpperCase() + "?") || textWordsArr[i].toUpperCase() === (cloze.toUpperCase() + ".") || textWordsArr[i].toUpperCase() === (cloze.toUpperCase() + "!") || textWordsArr[i].toUpperCase() === (cloze.toUpperCase() + ",") || textWordsArr[i].toUpperCase() === (cloze.toUpperCase() + ";") || textWordsArr[i].toUpperCase() === (cloze.toUpperCase() + ":")) {
+			clozeFound = true;
+		}
+	}
+
+	if(clozeFound === false) {
+		throw "The cloze deletion does not appear in the full text. Please try again.";
 	} else {
 		this.text = text;
 		this.cloze = cloze;

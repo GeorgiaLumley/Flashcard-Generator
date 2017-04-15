@@ -44,19 +44,23 @@ var createClozeCard = function() {
 		]).then(function(answers) {
 			var newCard = new ClozeCard(answers.text, answers.cloze);
 
-			if(newCard !== undefined) {
-				cardsArr.push(newCard);
+			cardsArr.push(newCard);
 
-				console.log("");
-				console.log("    " + newCard.text.replace(cloze, "[" + cloze + "]"));
-				console.log("");
+			var clozeStartIndex = newCard.getFullText().toUpperCase().indexOf(newCard.getCloze().toUpperCase());
+			var clozeLength = newCard.getCloze().length;
+			// console.log(clozeStartIndex, clozeLength);
 
-				cardIndex++;
+			console.log("");
+			console.log("    " + newCard.getFullText().replace(newCard.getFullText().substring(clozeStartIndex, clozeStartIndex + clozeLength), "[" + newCard.getFullText().substring(clozeStartIndex, clozeStartIndex + clozeLength) + "]"));
+			console.log("");
 
-				createClozeCard();
-			} else {
-				createClozeCard();
-			}
+			cardIndex++;
+
+			createClozeCard();
+		}).catch(function(err) {
+			console.log(err);
+
+			createClozeCard();
 		});
 	} else {
 		console.log(" --- === QUIZ TIME === ---");
