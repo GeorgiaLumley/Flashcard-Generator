@@ -1,12 +1,16 @@
+// necessary modules for constructor and use of inquirer package
 var BasicCard = require("./BasicCard.js");
 var inquirer = require("inquirer");
 
+
+// global variables
 var cardIndex = 1;
 var cardCount;
 var cardsArr = [];
 var quizIndex = 0;
 var correctCount = 0;
 
+// function for asking user for number of cards to create
 var init = function() {
 	inquirer.prompt([
 		{
@@ -15,6 +19,7 @@ var init = function() {
 			name: "quantity"
 		}
 	]).then(function(answers) {
+		// data validation for number
 		if(isNaN(answers.quantity) === false) {
 			cardCount = answers.quantity;
 			console.log("");
@@ -28,6 +33,7 @@ var init = function() {
 	});
 };
 
+// creating card function
 var createBasicCard = function() {
 	if(cardsArr.length < cardCount) {
 		inquirer.prompt([
@@ -57,6 +63,7 @@ var createBasicCard = function() {
 	}
 };
 
+// function for quizzing user after cards created
 var quiz = function() {
 	if(quizIndex < cardCount) {
 		inquirer.prompt([
@@ -92,4 +99,5 @@ var quiz = function() {
 console.log("");
 console.log(" --- ===  WELCOME  === ---");
 
+// to kick things off
 init();

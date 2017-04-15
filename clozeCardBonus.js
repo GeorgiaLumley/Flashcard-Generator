@@ -1,12 +1,15 @@
+// required modules for constructor and inquirer package
 var ClozeCard = require("./ClozeCard.js");
 var inquirer = require("inquirer");
 
+// global variables
 var cardIndex = 1;
 var cardCount;
 var cardsArr = [];
 var quizIndex = 0;
 var correctCount = 0;
 
+// initial inquiry of number of cards to create
 var init = function() {
 	inquirer.prompt([
 		{
@@ -28,6 +31,7 @@ var init = function() {
 	});
 };
 
+// main card-creation function
 var createClozeCard = function() {
 	if(cardsArr.length < cardCount) {
 		inquirer.prompt([
@@ -57,8 +61,11 @@ var createClozeCard = function() {
 			cardIndex++;
 
 			createClozeCard();
+		// catches error thrown if promise is unhandled
 		}).catch(function(err) {
-			console.log(err);
+			console.log("");
+			console.log("     " + err);
+			console.log("");
 
 			createClozeCard();
 		});
@@ -68,6 +75,7 @@ var createClozeCard = function() {
 	}
 };
 
+// quiz user after cards have been created
 var quiz = function() {
 	if(quizIndex < cardCount) {
 		inquirer.prompt([
