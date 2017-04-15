@@ -45,3 +45,15 @@ After execution, you will guided by the command line to begin creating your flas
 - We are modularizing our command-line app by separating the files: the logic is that each constructor is contained in its own JavaScript file, and so is each executable
 - By exporting (using `module.exports`), we can link separate files
 - Recursion and promises were essential to this program as it required the calling of functions but only after the user had completed certain steps, e.g. wait for user to finish input of flashcard contents
+
+Big a-ha moment was using catching the unhandled promise rejections when the `ClozeCard` constructor failed to get created (because the cloze-deletion was not found in the full text). See below:
+
+```js
+	// catches error thrown if promise is unhandled
+	}).catch(function(err) {
+		console.log("");
+		console.log("     " + err);
+		console.log("");
+
+		createClozeCard();
+```
